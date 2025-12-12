@@ -6,7 +6,6 @@ TODO: Implementation in Step 3.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
 
 @dataclass
@@ -21,7 +20,7 @@ class AssetStoreAdapter:
 
         raise NotImplementedError
 
-    def get_url(self, key: str) -> Optional[str]:
+    def get_url(self, key: str) -> str | None:
         """Return a public URL for the given key.
 
         TODO: Implementation in Step 3.

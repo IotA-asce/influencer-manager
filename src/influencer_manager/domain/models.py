@@ -10,7 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-from typing import Any, Optional
+from typing import Any
 
 
 class JobState(Enum):
@@ -31,10 +31,10 @@ class PromptSpec:
     """Prompt specification for image generation requests."""
 
     text: str
-    style_bible_ref: Optional[str]
+    style_bible_ref: str | None
     aspect_ratio: str
-    seed: Optional[int]
-    refs: Optional[list[str]]
+    seed: int | None
+    refs: list[str] | None
 
 
 @dataclass
@@ -44,11 +44,11 @@ class GeneratedImage:
     Holds optional in-memory data or local path alongside metadata for storage/publishing.
     """
 
-    data: Optional[bytes]
-    path: Optional[str]
+    data: bytes | None
+    path: str | None
     mime: str
-    width: Optional[int]
-    height: Optional[int]
+    width: int | None
+    height: int | None
     sha256: str
 
 
@@ -58,7 +58,7 @@ class PostPlan:
 
     caption_template: str
     hashtags: list[str]
-    scheduled_at: Optional[datetime]
+    scheduled_at: datetime | None
     prompt_spec: PromptSpec
 
 
@@ -69,8 +69,8 @@ class PublishJob:
     job_key: str
     state: JobState
     retry_count: int
-    container_id: Optional[str]
-    media_id: Optional[str]
+    container_id: str | None
+    media_id: str | None
     created_at: datetime
     updated_at: datetime
 
