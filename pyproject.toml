@@ -15,6 +15,7 @@ dependencies = [
     "pillow",
     "httpx",
     "pydantic",
+    "pydantic-settings",
     "python-dotenv",
     "tenacity",
     "typer",
