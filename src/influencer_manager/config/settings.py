@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from pydantic import AliasChoices, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -20,24 +18,25 @@ class Settings(BaseSettings):
 
     env: str = "local"
     log_level: str = "INFO"
-    gemini_api_key: Optional[str] = Field(
+    gemini_api_key: str | None = Field(
         default=None,
         validation_alias=AliasChoices("GEMINI_API_KEY", "GOOGLE_API_KEY"),
     )
     gemini_model: str = "gemini-3-pro-image-preview"
-    ig_access_token: Optional[str] = None
-    ig_user_id: Optional[str] = None
+    ig_access_token: str | None = None
+    ig_user_id: str | None = None
     graph_api_base_url: str = "https://graph.facebook.com"
     graph_api_version: str = "v21.0"
-    meta_app_id: Optional[str] = None
-    meta_app_secret: Optional[str] = None
+    meta_app_id: str | None = None
+    meta_app_secret: str | None = None
 
     def require_gemini(self) -> None:
         """Validate that Gemini configuration is present."""
 
         if not self.gemini_api_key:
             raise ValueError(
-                "Missing Gemini credentials. Set GEMINI_API_KEY or GOOGLE_API_KEY to enable generation."
+                "Missing Gemini credentials. Set GEMINI_API_KEY or GOOGLE_API_KEY to enable "
+                "generation."
             )
 
     def require_instagram(self) -> None:
@@ -45,5 +44,6 @@ class Settings(BaseSettings):
 
         if not self.ig_access_token or not self.ig_user_id:
             raise ValueError(
-                "Missing Instagram credentials. Set IM_IG_ACCESS_TOKEN and IM_IG_USER_ID to enable publishing."
+                "Missing Instagram credentials. Set IM_IG_ACCESS_TOKEN and IM_IG_USER_ID to enable "
+                "publishing."
             )

@@ -6,7 +6,7 @@ from functools import lru_cache
 
 from .settings import Settings
 
-__all__ = ["get_settings", "Settings"]
+__all__ = ["Settings", "get_settings"]
 
 
 @lru_cache(maxsize=1)
