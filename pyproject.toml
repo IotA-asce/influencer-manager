@@ -1,0 +1,78 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "influencer-manager"
+version = "0.1.0"
+description = "Automation pipeline to generate campaign-ready images and publish them to Instagram."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = {file = "LICENSE"}
+authors = [{name = "influencer-manager maintainers"}]
+dependencies = [
+    "google-genai",
+    "pillow",
+    "httpx",
+    "pydantic",
+    "python-dotenv",
+    "tenacity",
+    "typer",
+    "rich",
+    "structlog",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+    "pytest-cov",
+    "mypy",
+    "pre-commit",
+]
+
+[project.scripts]
+influencer-manager = "influencer_manager.__main__:main"
+
+[tool.uv]
+dev-dependencies = [
+    "ruff",
+    "pytest",
+    "pytest-cov",
+    "mypy",
+    "pre-commit",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+exclude = [
+    ".git",
+    ".ruff_cache",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".venv",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP",
+    "SIM",
+    "PIE",
+    "RUF",
+]
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --disable-warnings --maxfail=1 --cov=src/influencer_manager --cov-report=term-missing"
