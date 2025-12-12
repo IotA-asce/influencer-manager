@@ -6,7 +6,6 @@ TODO: Implementation in Step 3.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
 
 @dataclass
@@ -37,7 +36,7 @@ class InstagramPublisherAdapter:
 
         raise NotImplementedError
 
-    def get_publishing_limit(self) -> Optional[int]:
+    def get_publishing_limit(self) -> int | None:
         """Return remaining publishing capacity or limit window value.
 
         TODO: Implementation in Step 3.
