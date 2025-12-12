@@ -55,7 +55,7 @@ def config_check(
             settings.require_instagram()
     except ValueError as exc:  # pragma: no cover - defensive
         console.print(f"[red]Configuration error:[/red] {exc}")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from exc
 
     console.print("[green]Configuration validated.[/green]")
 
