@@ -20,6 +20,15 @@ Install dependencies (including development tools):
 
 ```bash
 uv sync --dev
+# First sync will generate `uv.lock`; commit it to capture resolved versions.
+```
+
+If you're behind a corporate proxy, export proxy variables so `uv` can reach PyPI:
+
+```bash
+export HTTP_PROXY=http://proxy.example.com:3128
+export HTTPS_PROXY=http://proxy.example.com:3128
+uv sync --dev
 ```
 
 ## Usage
